@@ -30,17 +30,6 @@ Create questions that are syntactically and semantically similar to real technic
 - **Free AI Integration**: Uses DeepSeek (free tier) for intelligent trap question generation
 - **Privacy Focused**: No personal data collection beyond what's needed for generation
 
-## 🕰️ Design Philosophy
-
-BeatCluely embraces the **classic 2005 web aesthetic**:
-- **Fixed 800px width** on desktop (responsive on mobile)
-- **Windows 95/98 UI elements** with inset/outset borders
-- **Classic blue gradients** and web-safe colors
-- **Arial font** and simple typography
-- **3D button effects** with hover states
-- **Traditional form styling** with proper focus states
-- **Authentic popup modals** instead of modern overlays
-
 ## 🛠️ Setup & Installation
 
 ### Prerequisites
@@ -177,12 +166,6 @@ Generates a hallucination trap question based on role and original question.
 - **No Personal Data**: We don't collect any personal information beyond what's needed for generation
 - **Transparency**: Full AI prompt is viewable via the help popup
 
-## 📱 Mobile Support
-
-BeatCluely is fully responsive and works great on:
-- **Desktop**: Classic 800px fixed width layout
-- **Tablets**: Responsive width with optimized spacing
-- **Mobile Phones**: Full-width layout with touch-friendly controls
 
 ## 🎭 Example Trap Questions
 
@@ -220,5 +203,3 @@ BeatCluely is designed to maintain interview integrity. Use responsibly and in a
 ---
 
 **Built with ❤️ to maintain interview integrity**
-
-*© 2025 BeatCluely.com - Bringing 2005 web design to modern AI detection*
