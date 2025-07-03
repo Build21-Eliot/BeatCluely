@@ -1,103 +1,240 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [role, setRole] = useState('');
+  const [question, setQuestion] = useState('');
+  const [trapQuestion, setTrapQuestion] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showPromptPopup, setShowPromptPopup] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const generateTrapQuestion = async () => {
+    if (!role.trim() || !question.trim()) {
+      alert('Please fill in both your role and interview question');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('/api/generate-trap', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ role, question }),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        setTrapQuestion(data.trapQuestion);
+      } else {
+        alert('Error generating trap question: ' + data.error);
+      }
+    } catch (error) {
+      alert('Error generating trap question: ' + error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const showPromptHelp = () => {
+    setShowPromptPopup(true);
+  };
+
+  const closePromptPopup = () => {
+    setShowPromptPopup(false);
+  };
+
+  return (
+    <div className="container">
+      {/* Header */}
+      <div className="header">
+        <h1>🎯 BeatCluely.com</h1>
+        <p>Detect AI Interview Cheating with Hallucination Traps</p>
+        <p className="disclaimer">Not Associated, Sponsored by, or otherwise related to Cluely in any way</p>
+      </div>
+
+      <div className="content">
+        {/* Strategy Explanation */}
+        <div className="section">
+          <h2>How It Works: The Hallucination Trap Strategy</h2>
+          
+          <div className="problem-box">
+            <h3>The Problem</h3>
+            <p>
+              Interview cheating tools like Cluely use AI to listen to interview questions and suggest answers. 
+              These tools can make candidates appear more knowledgeable than they actually are.
+            </p>
+          </div>
+
+          <div className="solution-box">
+            <h3>The Solution</h3>
+            <p>
+              Create questions that are syntactically and semantically similar to real technical questions, 
+              but contain fictional elements that any human expert would recognize as nonsensical.
+            </p>
+          </div>
+
+          <div className="example-box">
+            <h3>Example Trap</h3>
+            <p>
+              <strong>Real Question:</strong> "I need to change the IP address of a network device to be on the same subnet."
+            </p>
+            <p>
+              <strong>Trap Question:</strong> "I need to change the IP address of a <span className="highlight">H0TD0G protocol</span> device 
+              to be on the same subnet as the meeting room system."
+            </p>
+          </div>
+
+          <div className="warning-box">
+            <h3>What Happens</h3>
+            <ul>
+              <li><strong>Human Expert:</strong> "I'm not familiar with H0TD0G protocol - that doesn't sound like a real networking standard."</li>
+              <li><strong>AI Tools:</strong> Often hallucinate explanations and provide detailed but incorrect answers about fictional protocols.</li>
+            </ul>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Generator Form */}
+        <div className="form-container">
+          <div className="form-title">
+            Generate Your Hallucination Trap 
+            <button onClick={showPromptHelp} className="help-button" title="View AI Prompt">
+              ?
+            </button>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="role" className="form-label">
+              Interview Role/Position:
+            </label>
+            <input
+              type="text"
+              id="role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              placeholder="e.g., Senior Software Engineer, Network Administrator, Data Scientist"
+              className="form-input"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="question" className="form-label">
+              Your Interview Question:
+            </label>
+            <textarea
+              id="question"
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              placeholder="Enter a technical question you plan to ask in the interview"
+              className="form-textarea"
+            />
+          </div>
+
+          <div className="form-group">
+            <button
+              onClick={generateTrapQuestion}
+              disabled={loading}
+              className="button"
+            >
+              {loading ? 'Generating...' : 'Generate Hallucination Trap'}
+            </button>
+          </div>
+
+          {trapQuestion && (
+            <div className="result-box">
+              <div className="result-title">
+                🎭 Your Hallucination Trap Question
+              </div>
+              <div className="result-content">
+                {trapQuestion}
+              </div>
+              <div className="usage-instructions">
+                <strong>How to use:</strong> Ask this question during the interview. A real expert will identify the fictional elements, 
+                while AI tools will likely provide detailed but incorrect explanations.
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Additional Info */}
+        <div className="section">
+          <h2>Tips for Detecting AI Usage</h2>
+          
+          <div className="warning-box">
+            <h3>🚩 Red Flags (Possible AI Usage)</h3>
+            <ul>
+              <li>Detailed explanations of fictional technologies</li>
+              <li>Confident answers about non-existent protocols/methods</li>
+              <li>Technical-sounding but nonsensical responses</li>
+              <li>Immediate responses without hesitation</li>
+            </ul>
+          </div>
+
+          <div className="solution-box">
+            <h3>✅ Green Flags (Likely Human)</h3>
+            <ul>
+              <li>"I'm not familiar with that"</li>
+              <li>"That doesn't sound like a real technology"</li>
+              <li>Questions about the fictional elements</li>
+              <li>Honest admission of not knowing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="footer">
+        <p>© 2025 BeatCluely.com - Helping maintain interview integrity since 2024</p>
+        <p>
+          <strong>Privacy & AI Usage:</strong> We use the free version of DeepSeek to keep hosting costs low. 
+          Questions may be used for model training, but we do not collect any personal information otherwise.
+        </p>
+        <p>Use responsibly and in accordance with your organization's policies.</p>
+      </div>
+
+      {/* Prompt Help Popup */}
+      {showPromptPopup && (
+        <div className="popup-overlay">
+          <div className="popup-dialog">
+            <div className="popup-header">
+              <span className="popup-title">AI Prompt Details</span>
+              <button onClick={closePromptPopup} className="popup-close">×</button>
+            </div>
+            <div className="popup-content">
+              <p><strong>This is the exact prompt sent to DeepSeek AI:</strong></p>
+              <div className="prompt-text">
+                You are an expert at creating "hallucination trap" questions to detect AI interview cheating tools. These questions should be syntactically and semantically similar to real technical questions but contain fictional elements that would make a human expert say "I don't know" or "that doesn't sound right," while AI models often hallucinate detailed answers.
+                <br/><br/>
+                <strong>Role:</strong> [Your Role]<br/>
+                <strong>Original Question:</strong> [Your Question]
+                <br/><br/>
+                <strong>Create a hallucination trap version of this question by:</strong><br/>
+                1. Keeping the same general structure and context<br/>
+                2. Replacing 1-2 key technical terms with fictional but super plausible-sounding alternatives<br/>
+                3. Making it sound technical enough that an AI will try to answer it<br/>
+                4. Ensuring a real expert would immediately recognize it as a nonsense question
+                <br/><br/>
+                <strong>Examples of good hallucination trap questions:</strong><br/>
+                • "How do you change the IP address of a H0TD0G protocol networked peripheral device to match the same subnet as the meeting room system?" instead of real networking protocols<br/>
+                • "How do you sort a linked list using a bidirectional flutter sort?" instead of real algorithms<br/>
+                • "How do you encrypt a file using a chaotic encryption method?" instead of real encryption methods<br/>
+                • "How do you implement a recursive descent algorithm for parsing a JSON file?" instead of real algorithms<br/>
+                • "When would you use a microservice code-logic container for a web application?" instead of Docker containers
+                <br/><br/>
+                It must sound plausible and not like a joke, don't make it too obvious or it will be easy to detect.
+                <br/><br/>
+                Generate only the trap question, nothing else. Make it specific to the role and maintain the professional tone of the original question.
+              </div>
+            </div>
+            <div className="popup-footer">
+              <button onClick={closePromptPopup} className="button">Close</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

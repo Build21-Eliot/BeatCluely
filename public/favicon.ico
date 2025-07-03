@@ -1,0 +1,19 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer ring - dark blue -->
+  <circle cx="16" cy="16" r="15" fill="#000080" stroke="#000" stroke-width="1"/>
+  
+  <!-- Second ring - white -->
+  <circle cx="16" cy="16" r="12" fill="#ffffff"/>
+  
+  <!-- Third ring - red -->
+  <circle cx="16" cy="16" r="9" fill="#dc143c"/>
+  
+  <!-- Fourth ring - white -->
+  <circle cx="16" cy="16" r="6" fill="#ffffff"/>
+  
+  <!-- Center bullseye - dark blue -->
+  <circle cx="16" cy="16" r="3" fill="#000080"/>
+  
+  <!-- Center dot - white -->
+  <circle cx="16" cy="16" r="1" fill="#ffffff"/>
+</svg> 
