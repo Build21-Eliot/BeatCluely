@@ -221,7 +221,6 @@ export default function Home() {
                 • &quot;How do you change the IP address of a H0TD0G protocol networked peripheral device to match the same subnet as the meeting room system?&quot; instead of real networking protocols<br/>
                 • &quot;How do you sort a linked list using a bidirectional flutter sort?&quot; instead of real algorithms<br/>
                 • &quot;How do you encrypt a file using a chaotic encryption method?&quot; instead of real encryption methods<br/>
-                • &quot;How do you implement a recursive descent algorithm for parsing a JSON file?&quot; instead of real algorithms<br/>
                 • &quot;When would you use a microservice code-logic container for a web application?&quot; instead of Docker containers
                 <br/><br/>
                 It must sound plausible and not like a joke, don&apos;t make it too obvious or it will be easy to detect.
