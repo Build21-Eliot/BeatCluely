@@ -38,7 +38,7 @@ Create a hallucination trap version of this question by:
 Examples of good hallucination trap questions:
 - "How do you change the IP address of a H0TD0G protocol networked peripheral device to match the same subnet as the meeting room system?" instead of real networking protocols
 - "How do you sort a linked list using a bidirectional flutter sort?" instead of real algorithms
-- "How do you encrypt a file using a chaotic encryption method?" instead of real encryption methods
+- "How do you encrypt a file using a chaotic-reversible encryption method?" instead of real encryption methods
 - "How do you implement a recursive descent algorithm for parsing a JSON file?" instead of real algorithms
 - "When would you use a microservice code-logic container for a web application?" instead of Docker containers
 
@@ -69,10 +69,11 @@ Generate only the trap question, nothing else. Make it specific to the role and 
 
     return NextResponse.json({ trapQuestion });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error generating trap question:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
     return NextResponse.json(
-      { error: 'Failed to generate trap question: ' + error.message },
+      { error: 'Failed to generate trap question: ' + errorMessage },
       { status: 500 }
     );
   }

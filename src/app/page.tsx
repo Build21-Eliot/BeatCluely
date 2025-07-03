@@ -80,18 +80,18 @@ export default function Home() {
           <div className="example-box">
             <h3>Example Trap</h3>
             <p>
-              <strong>Real Question:</strong> "I need to change the IP address of a network device to be on the same subnet."
+              <strong>Real Question:</strong> &quot;I need to change the IP address of a network device to be on the same subnet.&quot;
             </p>
             <p>
-              <strong>Trap Question:</strong> "I need to change the IP address of a <span className="highlight">H0TD0G protocol</span> device 
-              to be on the same subnet as the meeting room system."
+              <strong>Trap Question:</strong> &quot;I need to change the IP address of a <span className="highlight">H0TD0G protocol</span> device 
+              to be on the same subnet as the meeting room system.&quot;
             </p>
           </div>
 
           <div className="warning-box">
             <h3>What Happens</h3>
             <ul>
-              <li><strong>Human Expert:</strong> "I'm not familiar with H0TD0G protocol - that doesn't sound like a real networking standard."</li>
+              <li><strong>Human Expert:</strong> &quot;I&apos;m not familiar with H0TD0G protocol - that doesn&apos;t sound like a real networking standard.&quot;</li>
               <li><strong>AI Tools:</strong> Often hallucinate explanations and provide detailed but incorrect answers about fictional protocols.</li>
             </ul>
           </div>
@@ -176,8 +176,8 @@ export default function Home() {
           <div className="solution-box">
             <h3>✅ Green Flags (Likely Human)</h3>
             <ul>
-              <li>"I'm not familiar with that"</li>
-              <li>"That doesn't sound like a real technology"</li>
+              <li>&quot;I&apos;m not familiar with that&quot;</li>
+              <li>&quot;That doesn&apos;t sound like a real technology&quot;</li>
               <li>Questions about the fictional elements</li>
               <li>Honest admission of not knowing</li>
             </ul>
@@ -192,7 +192,7 @@ export default function Home() {
           <strong>Privacy & AI Usage:</strong> We use the free version of DeepSeek to keep hosting costs low. 
           Questions may be used for model training, but we do not collect any personal information otherwise.
         </p>
-        <p>Use responsibly and in accordance with your organization's policies.</p>
+        <p>Use responsibly and in accordance with your organization&apos;s policies.</p>
       </div>
 
       {/* Prompt Help Popup */}
@@ -206,7 +206,7 @@ export default function Home() {
             <div className="popup-content">
               <p><strong>This is the exact prompt sent to DeepSeek AI:</strong></p>
               <div className="prompt-text">
-                You are an expert at creating "hallucination trap" questions to detect AI interview cheating tools. These questions should be syntactically and semantically similar to real technical questions but contain fictional elements that would make a human expert say "I don't know" or "that doesn't sound right," while AI models often hallucinate detailed answers.
+                You are an expert at creating &quot;hallucination trap&quot; questions to detect AI interview cheating tools. These questions should be syntactically and semantically similar to real technical questions but contain fictional elements that would make a human expert say &quot;I don&apos;t know&quot; or &quot;that doesn&apos;t sound right,&quot; while AI models often hallucinate detailed answers.
                 <br/><br/>
                 <strong>Role:</strong> [Your Role]<br/>
                 <strong>Original Question:</strong> [Your Question]
@@ -218,13 +218,13 @@ export default function Home() {
                 4. Ensuring a real expert would immediately recognize it as a nonsense question
                 <br/><br/>
                 <strong>Examples of good hallucination trap questions:</strong><br/>
-                • "How do you change the IP address of a H0TD0G protocol networked peripheral device to match the same subnet as the meeting room system?" instead of real networking protocols<br/>
-                • "How do you sort a linked list using a bidirectional flutter sort?" instead of real algorithms<br/>
-                • "How do you encrypt a file using a chaotic encryption method?" instead of real encryption methods<br/>
-                • "How do you implement a recursive descent algorithm for parsing a JSON file?" instead of real algorithms<br/>
-                • "When would you use a microservice code-logic container for a web application?" instead of Docker containers
+                • &quot;How do you change the IP address of a H0TD0G protocol networked peripheral device to match the same subnet as the meeting room system?&quot; instead of real networking protocols<br/>
+                • &quot;How do you sort a linked list using a bidirectional flutter sort?&quot; instead of real algorithms<br/>
+                • &quot;How do you encrypt a file using a chaotic encryption method?&quot; instead of real encryption methods<br/>
+                • &quot;How do you implement a recursive descent algorithm for parsing a JSON file?&quot; instead of real algorithms<br/>
+                • &quot;When would you use a microservice code-logic container for a web application?&quot; instead of Docker containers
                 <br/><br/>
-                It must sound plausible and not like a joke, don't make it too obvious or it will be easy to detect.
+                It must sound plausible and not like a joke, don&apos;t make it too obvious or it will be easy to detect.
                 <br/><br/>
                 Generate only the trap question, nothing else. Make it specific to the role and maintain the professional tone of the original question.
               </div>
